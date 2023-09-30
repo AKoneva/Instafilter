@@ -18,6 +18,7 @@ struct ContentView: View {
     
     @State private var inputImage: UIImage?
     @State private var currentFilter: CIFilter = CIFilter.sepiaTone()
+    @State private var processedImage: UIImage?
     
     let context = CIContext()
     
@@ -27,12 +28,12 @@ struct ContentView: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
                         .strokeBorder(Color.secondary)
-                              
-
+                    
+                    
                     Text("Tap to select a picture")
                         .foregroundColor(.secondary)
                         .font(.headline)
-
+                    
                     image?
                         .resizable()
                         .scaledToFit()
@@ -40,23 +41,23 @@ struct ContentView: View {
                 .onTapGesture {
                     showingImagePicker = true
                 }
-
+                
                 HStack {
                     Text("Intensity")
                     Slider(value: $filterIntensity)
                         .onChange(of: filterIntensity) { _ in
-                                applyProcessing()
-                            }
+                            applyProcessing()
+                        }
                 }
                 .padding(.vertical)
-
+                
                 HStack {
                     Button("Change Filter") {
                         showingFilterSheet = true
                     }
-
+                    
                     Spacer()
-
+                    
                     Button("Save", action: save)
                 }
             }
@@ -81,28 +82,42 @@ struct ContentView: View {
     
     func loadImage() {
         guard let inputImage = inputImage else { return }
-
-            let beginImage = CIImage(image: inputImage)
-            currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
-            applyProcessing()
+        
+        let beginImage = CIImage(image: inputImage)
+        currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
+        applyProcessing()
     }
     
     func applyProcessing() {
         let inputKeys = currentFilter.inputKeys
-
+        
         if inputKeys.contains(kCIInputIntensityKey) { currentFilter.setValue(filterIntensity, forKey: kCIInputIntensityKey) }
         if inputKeys.contains(kCIInputRadiusKey) { currentFilter.setValue(filterIntensity * 200, forKey: kCIInputRadiusKey) }
         if inputKeys.contains(kCIInputScaleKey) { currentFilter.setValue(filterIntensity * 10, forKey: kCIInputScaleKey) }
-
+        
         guard let outputImage = currentFilter.outputImage else { return }
-
+        
         if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
             let uiImage = UIImage(cgImage: cgimg)
             image = Image(uiImage: uiImage)
+            processedImage = uiImage
         }
     }
     
     func save() {
+        guard let processedImage = processedImage else { return }
+        
+        let imageSaver = ImageSaver()
+        imageSaver.successHandler = {
+            print("Success!")
+        }
+        
+        imageSaver.errorHandler = {
+            print("Oops: \($0.localizedDescription)")
+        }
+        
+        imageSaver.writeToPhotoAlbum(image: processedImage)
+        
     }
     
     func setFilter(_ filter: CIFilter) {
