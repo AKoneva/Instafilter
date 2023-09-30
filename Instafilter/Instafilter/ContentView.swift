@@ -27,10 +27,30 @@ struct ContentView: View {
         let beginImage = CIImage(image: inputImage)
         
         let context = CIContext()
-        let currentFilter = CIFilter.sepiaTone()
         
+        //Old picture
+//        let currentFilter = CIFilter.sepiaTone()
+//        currentFilter.inputImage = beginImage
+//        currentFilter.intensity = 1
+        
+        //Pixel picture
+//        let currentFilter = CIFilter.pixellate()
+//        currentFilter.inputImage = beginImage
+//        currentFilter.scale = 200
+        
+        //mozaic picture
+        let currentFilter = CIFilter.crystallize()
         currentFilter.inputImage = beginImage
-        currentFilter.intensity = 1
+        currentFilter.radius = 200
+        
+        //wave in centre picture
+//        let currentFilter = CIFilter.twirlDistortion()
+//        currentFilter.inputImage = beginImage
+//        currentFilter.radius = 1000
+//        currentFilter.center = CGPoint(x: inputImage.size.width / 2, y: inputImage.size.height / 2)
+        
+
+
         
         guard let outputImage = currentFilter.outputImage else { return }
     
