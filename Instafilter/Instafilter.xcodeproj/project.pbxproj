@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04918C6A2AC8021D00681DF4 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04918C692AC8021D00681DF4 /* ImagePicker.swift */; };
 		04BFF94B2AC7F5F300D35CAF /* InstafilterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF94A2AC7F5F300D35CAF /* InstafilterApp.swift */; };
 		04BFF94D2AC7F5F300D35CAF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF94C2AC7F5F300D35CAF /* ContentView.swift */; };
 		04BFF94F2AC7F5F600D35CAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04BFF94E2AC7F5F600D35CAF /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04918C692AC8021D00681DF4 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		04BFF9472AC7F5F300D35CAF /* Instafilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instafilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04BFF94A2AC7F5F300D35CAF /* InstafilterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstafilterApp.swift; sourceTree = "<group>"; };
 		04BFF94C2AC7F5F300D35CAF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +34,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04918C662AC801F300681DF4 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				04BFF94A2AC7F5F300D35CAF /* InstafilterApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		04918C672AC801FC00681DF4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04BFF94C2AC7F5F300D35CAF /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04918C682AC8020A00681DF4 /* UIKitWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				04918C692AC8021D00681DF4 /* ImagePicker.swift */,
+			);
+			path = UIKitWrapper;
+			sourceTree = "<group>";
+		};
 		04BFF93E2AC7F5F300D35CAF = {
 			isa = PBXGroup;
 			children = (
@@ -51,8 +77,9 @@
 		04BFF9492AC7F5F300D35CAF /* Instafilter */ = {
 			isa = PBXGroup;
 			children = (
-				04BFF94A2AC7F5F300D35CAF /* InstafilterApp.swift */,
-				04BFF94C2AC7F5F300D35CAF /* ContentView.swift */,
+				04918C682AC8020A00681DF4 /* UIKitWrapper */,
+				04918C672AC801FC00681DF4 /* View */,
+				04918C662AC801F300681DF4 /* App */,
 				04BFF94E2AC7F5F600D35CAF /* Assets.xcassets */,
 				04BFF9502AC7F5F600D35CAF /* Preview Content */,
 			);
@@ -137,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04918C6A2AC8021D00681DF4 /* ImagePicker.swift in Sources */,
 				04BFF94D2AC7F5F300D35CAF /* ContentView.swift in Sources */,
 				04BFF94B2AC7F5F300D35CAF /* InstafilterApp.swift in Sources */,
 			);
